@@ -1,0 +1,245 @@
+#################### Elasticsearch
+elasticsearch.cluster.health:
+  path: /_cluster/health
+  items:
+    cluster_name: "$.cluster_name"
+    status: "$.status"
+    timed_out: "$.timed_out"
+    number_of_nodes: "$.number_of_nodes"
+    number_of_data_nodes: "$.number_of_data_nodes"
+    active_primary_shards: "$.active_primary_shards"
+    active_shards: "$.active_shards"
+    relocating_shards: "$.relocating_shards"
+    initializing_shards: "$.initializing_shards"
+    unassigned_shards: "$.unassigned_shards"
+    delayed_unassigned_shards: "$.delayed_unassigned_shards"
+    number_of_pending_tasks: "$.number_of_pending_tasks"
+    number_of_in_flight_fetch: "$.number_of_in_flight_fetch"
+    task_max_waiting_in_queue_millis: "$.task_max_waiting_in_queue_millis"
+    active_shards_percent_as_number: "$.active_shards_percent_as_number"
+
+elasticsearch.node.jvm:
+  path: /_nodes/stats/jvm
+  items:
+    jvm.threads.count: "$.nodes..*[@.host is '{0}'].jvm.threads.count"
+    jvm.threads.peak_count: "$.nodes..*[@.host is '{0}'].jvm.threads.peak_count"
+    jvm.mem.heap_committed_in_bytes: "$.nodes..*[@.host is '{0}'].jvm.mem.heap_committed_in_bytes"
+    jvm.mem.heap_max_in_bytes: "$.nodes..*[@.host is '{0}'].jvm.mem.heap_max_in_bytes"
+    jvm.mem.heap_used_in_bytes: "$.nodes..*[@.host is '{0}'].jvm.mem.heap_used_in_bytes"
+    jvm.mem.heap_used_percent: "$.nodes..*[@.host is '{0}'].jvm.mem.heap_used_percent"
+    jvm.mem.non_heap_committed_in_bytes: "$.nodes..*[@.host is '{0}'].jvm.mem.non_heap_committed_in_bytes"
+    jvm.mem.non_heap_used_in_bytes: "$.nodes..*[@.host is '{0}'].jvm.mem.non_heap_used_in_bytes"
+    jvm.gc.collectors.old.collection_count: "$.nodes..*[@.host is '{0}'].jvm.gc.collectors.old.collection_count"
+    jvm.gc.collectors.old.collection_time_in_millis: "$.nodes..*[@.host is '{0}'].jvm.gc.collectors.old.collection_time_in_millis"
+    jvm.gc.collectors.young.collection_count: "$.nodes..*[@.host is '{0}'].jvm.gc.collectors.young.collection_count"
+    jvm.gc.collectors.young.collection_time_in_millis: "$.nodes..*[@.host is '{0}'].jvm.gc.collectors.young.collection_time_in_millis"
+    jvm.buffer_pools.direct.count: "$.nodes..*[@.host is '{0}'].jvm.buffer_pools.direct.count"
+    jvm.buffer_pools.direct.total_capacity_in_bytes: "$.nodes..*[@.host is '{0}'].jvm.buffer_pools.direct.total_capacity_in_bytes"
+    jvm.buffer_pools.direct.used_in_bytes: "$.nodes..*[@.host is '{0}'].jvm.buffer_pools.direct.used_in_bytes"
+    jvm.buffer_pools.mapped.count: "$.nodes..*[@.host is '{0}'].jvm.buffer_pools.mapped.count"
+    jvm.buffer_pools.mapped.total_capacity_in_bytes: "$.nodes..*[@.host is '{0}'].jvm.buffer_pools.mapped.total_capacity_in_bytes"
+    jvm.buffer_pools.mapped.used_in_bytes: "$.nodes..*[@.host is '{0}'].jvm.buffer_pools.mapped.used_in_bytes"
+
+elasticsearch.node.fs:
+  path: /_nodes/stats/fs
+  items:
+    fs.total.total_in_bytes: "$.nodes..*[@.host is '{0}'].fs.total.total_in_bytes"
+    fs.total.free_in_bytes: "$.nodes..*[@.host is '{0}'].fs.total.free_in_bytes"
+    fs.total.available_in_bytes: "$.nodes..*[@.host is '{0}'].fs.total.available_in_bytes"
+
+elasticsearch.node.indices:
+  path: /_nodes/stats/indices
+  items:
+    indices.docs.count: "$.nodes..*[@.host is '{0}'].indices.docs.count"
+    indices.docs.deleted: "$.nodes..*[@.host is '{0}'].indices.docs.deleted"
+    indices.store.size_in_bytes: "$.nodes..*[@.host is '{0}'].indices.store.size_in_bytes"
+    indices.store.throttle_time_in_millis: "$.nodes..*[@.host is '{0}'].indices.store.throttle_time_in_millis"
+    indices.indexing.index_total: "$.nodes..*[@.host is '{0}'].indices.indexing.index_total"
+    indices.indexing.index_time_in_millis: "$.nodes..*[@.host is '{0}'].indices.indexing.index_time_in_millis"
+    indices.indexing.index_current: "$.nodes..*[@.host is '{0}'].indices.indexing.index_current"
+    indices.indexing.index_failed: "$.nodes..*[@.host is '{0}'].indices.indexing.index_failed"
+    indices.indexing.delete_total: "$.nodes..*[@.host is '{0}'].indices.indexing.delete_total"
+    indices.indexing.delete_time_in_millis: "$.nodes..*[@.host is '{0}'].indices.indexing.delete_time_in_millis"
+    indices.indexing.delete_current: "$.nodes..*[@.host is '{0}'].indices.indexing.delete_current"
+    indices.indexing.noop_update_total: "$.nodes..*[@.host is '{0}'].indices.indexing.noop_update_total"
+    indices.indexing.is_throttled: "$.nodes..*[@.host is '{0}'].indices.indexing.is_throttled"
+    indices.indexing.throttle_time_in_millis: "$.nodes..*[@.host is '{0}'].indices.indexing.throttle_time_in_millis"
+    indices.search.query_total: "$.nodes..*[@.host is '{0}'].indices.search.query_total"
+    indices.search.query_time_in_millis: "$.nodes..*[@.host is '{0}'].indices.search.query_time_in_millis"
+    indices.search.query_current: "$.nodes..*[@.host is '{0}'].indices.search.query_current"
+    indices.merges.total: "$.nodes..*[@.host is '{0}'].indices.merges.total"
+    indices.merges.total_docs: "$.nodes..*[@.host is '{0}'].indices.merges.total_docs"
+    indices.merges.total_size_in_bytes: "$.nodes..*[@.host is '{0}'].indices.merges.total_size_in_bytes"
+    indices.merges.total_stopped_time_in_millis: "$.nodes..*[@.host is '{0}'].indices.merges.total_stopped_time_in_millis"
+    indices.merges.total_throttled_time_in_millis: "$.nodes..*[@.host is '{0}'].indices.merges.total_throttled_time_in_millis"
+    indices.merges.total_time_in_millis: "$.nodes..*[@.host is '{0}'].indices.merges.total_time_in_millis"
+
+#################### Hadoop
+namenode.jmx.jvmmetrics:
+  path: /jmx?qry=Hadoop:service=NameNode,name=JvmMetrics
+  items:
+    GcCount: "$.beans.*[0].GcCount"
+    GcTimeMillis: "$.beans.*[0].GcTimeMillis"
+    GcNumWarnThresholdExceeded: "$.beans.*[0].GcNumWarnThresholdExceeded"
+    GcNumInfoThresholdExceeded: "$.beans.*[0].GcNumInfoThresholdExceeded"
+    GcTotalExtraSleepTime: "$.beans.*[0].GcTotalExtraSleepTime"
+    ThreadsNew: "$.beans.*[0].ThreadsNew"
+    ThreadsRunnable: "$.beans.*[0].ThreadsRunnable"
+    ThreadsBlocked: "$.beans.*[0].ThreadsBlocked"
+    ThreadsWaiting: "$.beans.*[0].ThreadsWaiting"
+    ThreadsTimedWaiting: "$.beans.*[0].ThreadsTimedWaiting"
+    ThreadsTerminated: "$.beans.*[0].ThreadsTerminated"
+    LogFatal: "$.beans.*[0].LogFatal"
+    LogError: "$.beans.*[0].LogError"
+    LogWarn: "$.beans.*[0].LogWarn"
+    LogInfo: "$.beans.*[0].LogInfo"
+    MemMaxM: "$.beans.*[0].MemMaxM"
+    MemHeapMaxM: "$.beans.*[0].MemHeapMaxM"
+    MemHeapCommittedM: "$.beans.*[0].MemHeapCommittedM"
+    MemHeapUsedM: "$.beans.*[0].MemHeapUsedM"
+    MemNonHeapMaxM: "$.beans.*[0].MemNonHeapMaxM"
+    MemNonHeapCommittedM: "$.beans.*[0].MemNonHeapCommittedM"
+    MemNonHeapUsedM: "$.beans.*[0].MemNonHeapUsedM"
+
+namenode.jmx.FSNamesystemState:
+  path: /jmx?qry=Hadoop:service=NameNode,name=FSNamesystemState
+  items:
+    CapacityTotal: "$.beans.*[0].CapacityTotal"
+    CapacityUsed: "$.beans.*[0].CapacityUsed"
+    CapacityRemaining: "$.beans.*[0].CapacityRemaining"
+    TotalLoad: "$.beans.*[0].TotalLoad"
+    BlocksTotal: "$.beans.*[0].BlocksTotal"
+    FilesTotal: "$.beans.*[0].FilesTotal"
+    PendingReplicationBlocks: "$.beans.*[0].PendingReplicationBlocks"
+    UnderReplicatedBlocks: "$.beans.*[0].UnderReplicatedBlocks"
+    ScheduledReplicationBlocks: "$.beans.*[0].ScheduledReplicationBlocks"
+    PendingDeletionBlocks: "$.beans.*[0].PendingDeletionBlocks"
+    FSState: "$.beans.*[0].FSState"
+    NumLiveDataNodes: "$.beans.*[0].NumLiveDataNodes"
+    NumDeadDataNodes: "$.beans.*[0].NumDeadDataNodes"
+    NumDecomLiveDataNodes: "$.beans.*[0].NumDecomLiveDataNodes"
+    NumDecomDeadDataNodes: "$.beans.*[0].NumDecomDeadDataNodes"
+    NumDecommissioningDataNodes: "$.beans.*[0].NumDecommissioningDataNodes"
+
+datanode.jmx.FSDatasetState:
+  path: /jmx?qry=Hadoop:service=DataNode,name=FSDatasetState-null
+  items:
+    Remaining: "$.beans.*[0].Remaining"
+    Capacity: "$.beans.*[0].Capacity"
+    DfsUsed: "$.beans.*[0].DfsUsed"
+    CacheCapacity: "$.beans.*[0].CacheCapacity"
+    CacheUsed: "$.beans.*[0].CacheUsed"
+    NumFailedVolumes: "$.beans.*[0].NumFailedVolumes"
+
+#################### HBase
+hmaster.jmx.java:
+  path: /jmx?qry=java.lang:type=Runtime
+  items:
+    java.SpecVersion: "$.beans.*[@.name is 'java.lang:type=Runtime'].SpecVersion"
+
+hmaster.jmx.jvmmetrics:
+  path: /jmx?qry=Hadoop:service=HBase,name=JvmMetrics
+  items:
+    GcCount: "$.beans.*[0].GcCount"
+    GcTimeMillis: "$.beans.*[0].GcTimeMillis"
+    GcTimeMillisConcurrentMarkSweep: "$.beans.*[0].GcTimeMillisConcurrentMarkSweep"
+    GcCountConcurrentMarkSweep: "$.beans.*[0].GcCountConcurrentMarkSweep"
+    GcTimeMillisParNew: "$.beans.*[0].GcTimeMillisParNew"
+    GcCountParNew: "$.beans.*[0].GcCountParNew"
+    ThreadsNew: "$.beans.*[0].ThreadsNew"
+    ThreadsRunnable: "$.beans.*[0].ThreadsRunnable"
+    ThreadsBlocked: "$.beans.*[0].ThreadsBlocked"
+    ThreadsWaiting: "$.beans.*[0].ThreadsWaiting"
+    ThreadsTimedWaiting: "$.beans.*[0].ThreadsTimedWaiting"
+    ThreadsTerminated: "$.beans.*[0].ThreadsTerminated"
+    LogFatal: "$.beans.*[0].LogFatal"
+    LogError: "$.beans.*[0].LogError"
+    LogWarn: "$.beans.*[0].LogWarn"
+    LogInfo: "$.beans.*[0].LogInfo"
+    MemMaxM: "$.beans.*[0].MemMaxM"
+    MemHeapMaxM: "$.beans.*[0].MemHeapMaxM"
+    MemHeapCommittedM: "$.beans.*[0].MemHeapCommittedM"
+    MemHeapUsedM: "$.beans.*[0].MemHeapUsedM"
+    MemNonHeapMaxM: "$.beans.*[0].MemNonHeapMaxM"
+    MemNonHeapCommittedM: "$.beans.*[0].MemNonHeapCommittedM"
+    MemNonHeapUsedM: "$.beans.*[0].MemNonHeapUsedM"
+
+
+hmaster.jmx.server:
+  path: /jmx?qry=Hadoop:service=HBase,name=Master,sub=Server
+  items:
+    tag.liveRegionServers: "$.beans.*[0].'tag.liveRegionServers'"
+    tag.deadRegionServers: "$.beans.*[0].'tag.deadRegionServers'"
+    tag.zookeeperQuorum: "$.beans.*[0].'tag.zookeeperQuorum'"
+    tag.Hostname: "$.beans.*[0].'tag.Hostname'"
+    masterActiveTime: "$.beans.*[0].masterActiveTime"
+    masterStartTime: "$.beans.*[0].masterStartTime"
+    averageLoad: "$.beans.*[0].averageLoad"
+    numRegionServers: "$.beans.*[0].numRegionServers"
+    numDeadRegionServers: "$.beans.*[0].numDeadRegionServers"
+    clusterRequests: "$.beans.*[0].clusterRequests"
+
+hmaster.jmx.assignmentmanager:
+  path: /jmx?qry=Hadoop:service=HBase,name=Master,sub=AssignmentManger
+  items:
+    ritOldestAge: "$.beans.*[0].ritOldestAge"
+    ritCount: "$.beans.*[0].ritCount"
+    ritCountOverThreshold: "$.beans.*[0].ritCountOverThreshold"
+    BulkAssign_num_ops: "$.beans.*[0].BulkAssign_num_ops"
+    Assign_num_ops: "$.beans.*[0].Assign_num_ops"
+
+regionserver.jmx.jvmmetrics:
+  path: /jmx?qry=Hadoop:service=HBase,name=JvmMetrics
+  items:
+    GcCount: "$.beans.*[0].GcCount"
+    GcTimeMillis: "$.beans.*[0].GcTimeMillis"
+    GcTimeMillisConcurrentMarkSweep: "$.beans.*[0].GcTimeMillisConcurrentMarkSweep"
+    GcCountConcurrentMarkSweep: "$.beans.*[0].GcCountConcurrentMarkSweep"
+    GcTimeMillisParNew: "$.beans.*[0].GcTimeMillisParNew"
+    GcCountParNew: "$.beans.*[0].GcCountParNew"
+    ThreadsNew: "$.beans.*[0].ThreadsNew"
+    ThreadsRunnable: "$.beans.*[0].ThreadsRunnable"
+    ThreadsBlocked: "$.beans.*[0].ThreadsBlocked"
+    ThreadsWaiting: "$.beans.*[0].ThreadsWaiting"
+    ThreadsTimedWaiting: "$.beans.*[0].ThreadsTimedWaiting"
+    ThreadsTerminated: "$.beans.*[0].ThreadsTerminated"
+    LogFatal: "$.beans.*[0].LogFatal"
+    LogError: "$.beans.*[0].LogError"
+    LogWarn: "$.beans.*[0].LogWarn"
+    LogInfo: "$.beans.*[0].LogInfo"
+    MemMaxM: "$.beans.*[0].MemMaxM"
+    MemHeapMaxM: "$.beans.*[0].MemHeapMaxM"
+    MemHeapCommittedM: "$.beans.*[0].MemHeapCommittedM"
+    MemHeapUsedM: "$.beans.*[0].MemHeapUsedM"
+    MemNonHeapMaxM: "$.beans.*[0].MemNonHeapMaxM"
+    MemNonHeapCommittedM: "$.beans.*[0].MemNonHeapCommittedM"
+    MemNonHeapUsedM: "$.beans.*[0].MemNonHeapUsedM"
+
+regionserver.jmx.server:
+  path: /jmx?qry=Hadoop:service=HBase,name=RegionServer,sub=Server
+  items:
+    regionCount: "$.beans.*[0].regionCount"
+    storeFileCount: "$.beans.*[0].storeFileCount"
+    storeFileSize: "$.beans.*[0].storeFileSize"
+    totalRequestCount: "$.beans.*[0].totalRequestCount"
+    readRequestCount: "$.beans.*[0].readRequestCount"
+    writeRequestCount: "$.beans.*[0].writeRequestCount"
+    updatesBlockedTime: "$.beans.*[0].updatesBlockedTime"
+    flushQueueLength: "$.beans.*[0].flushQueueLength"
+    updatesBlockedTime: "$.beans.*[0].updatesBlockedTime"
+    compactionQueueLength: "$.beans.*[0].compactionQueueLength"
+    blockCacheHitCount: "$.beans.*[0].blockCacheHitCount"
+    blockCacheMissCount: "$.beans.*[0].blockCacheMissCount"
+    percentFilesLocal: "$.beans.*[0].percentFilesLocal"
+    blockCacheExpressHitPercent: "$.beans.*[0].blockCacheExpressHitPercent"
+
+regionserver.jmx.ipc:
+  path: /jmx?qry=Hadoop:service=HBase,name=RegionServer,sub=IPC
+  items:
+    numOpenConnections: "$.beans.*[0].numOpenConnections"
+    numActiveHandler: "$.beans.*[0].numActiveHandler"
+    numCallsInGeneralQueue: "$.beans.*[0].numCallsInGeneralQueue"
+    numCallsInReplicationQueue: "$.beans.*[0].numCallsInReplicationQueue"
+    numCallsInPriorityQueue: "$.beans.*[0].numCallsInPriorityQueue"
+    numOpenConnections: "$.beans.*[0].numOpenConnections"
+
